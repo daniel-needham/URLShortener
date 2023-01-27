@@ -35,13 +35,20 @@ public class URLService {
     //todo first check if the item is already there - (if not then hash) - and return newURL
     public URL tinyfySaveAndGetURL(String originalURL) {
         System.out.println(originalURL);
-        URL newUrl = new URL(originalURL, hash(originalURL));
-        urlRepository.save(newUrl);
-        return newUrl;
+        String hash = hash(originalURL);
+        Optional<URL> optionalURL = urlRepository.findURLByTinyURL(hash);
+        URL newURL;
+        if (optionalURL.isPresent()) {
+            newURL = optionalURL.get();
+        } else {
+            newURL = new URL(originalURL, hash);
+            urlRepository.save(newURL);
+        }
+        return newURL;
     }
 
     public String hash(String originalURL) {
         //todo implement hash
-        return originalURL + "11111";
+        return "11111";
     }
 }

@@ -33,7 +33,7 @@ public class URLShortenerController {
     }
 
     @PostMapping()
-    public String postAndGetTinyURL(@RequestBody String originalURL) {
+    public String postAndGetTinyURL(@RequestParam String originalURL) {
         URL url = urlService.tinyfySaveAndGetURL(originalURL);
         return address + url.getTinyURL();
     }
