@@ -13,7 +13,6 @@ import jakarta.xml.bind.DatatypeConverter;
 public class URLService {
     private final URLRepository urlRepository;
     private final MessageDigest messageDigest;
-
     private int urlSize = 4;
 
     @Autowired
@@ -35,7 +34,6 @@ public class URLService {
     public URL getURL(String tinyURL) {
         URL url = urlRepository.findURLByTinyURL(tinyURL).orElseThrow(() ->
                 new IllegalStateException("URL with the ending " + tinyURL + " does not exist."));
-
         return url;
     }
 
